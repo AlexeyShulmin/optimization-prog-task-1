@@ -42,7 +42,7 @@ public class Simplex {
             if (q == -1) break;
 
             int p = minRatioRule(q);
-            if (p == -1) throw new ArithmeticException("Linear program is unbounded");
+            if (p == -1) throw new ArithmeticException("The method is not applicable!");
 
             pivot(p, q);
         }
@@ -68,7 +68,7 @@ public class Simplex {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter all the variables in a row in such format: x1, x2, x3, x4");
+        System.out.println("Enter all variables in a row in such format: x1, x2, x3, x4");
         String variablesInput = sc.nextLine();
         String[] variables = variablesInput.split(", ");
 
@@ -145,7 +145,7 @@ public class Simplex {
                 return -1 * Double.parseDouble(matcher.group(1));
             return Double.parseDouble(matcher.group(1));
         }
-        return 0; 
+        return 0; // default value or throw an exception
     }
 
     public static void printVector(String name, double[] vec) {
