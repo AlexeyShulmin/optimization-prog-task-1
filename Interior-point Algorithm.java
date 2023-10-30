@@ -177,9 +177,9 @@ public class InteriorPointAlgorithm {
         Scanner scanner = new Scanner(System.in);
 
         // Input for matrix D
-        System.out.println("Enter the size of matrix D (n x n):");
+        System.out.println("Enter the number of variables in initial trial solution (n):");
         int n = scanner.nextInt();
-        double[][] D = new double[n][n];
+        double[][] D;
         double[] input = new double[n];
         System.out.println("Enter the initial trial solution:");
         for (int i = 0; i < n; i++) {
@@ -188,7 +188,7 @@ public class InteriorPointAlgorithm {
         D = MatrixOperations.createDiagonalMatrixFromVector(input);
 
         // Input for matrix A
-        System.out.println("Enter the size of matrix A (m x n):");
+        System.out.println("Enter the number of inequalities:");
         int m = scanner.nextInt();
         double[][] A = new double[m][n];
         System.out.println("Enter the elements of matrix A:");
@@ -253,6 +253,15 @@ public class InteriorPointAlgorithm {
 
         System.out.println("Vector x for alpha " + alpha + ":");
         printVector(prevX);
+        calculateAndPrintResult(prevX, c);
+    }
+
+    public static void calculateAndPrintResult(double[] vector, double[] c){
+        double result = 0;
+        for(int i = 0; i < vector.length; i++){
+            result += vector[i] * c[i];
+        }
+        System.out.println("Optimized value of objective function equals " + result);
     }
 
     public static double identifyLargestNegativeComponent(double[] vector) {
