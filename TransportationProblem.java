@@ -121,11 +121,13 @@ public class TransportationProblem {
             return;
         }
 
+        printInitialTable();
+
         northWestCornerSolution = northWestCornerMethod();
         vogelsApproximationSolution = vogelsApproximationMethod();
         russellsApproximationSolution = russellsApproximationMethod();
 
-        System.out.println("North West");
+        System.out.println("North-West Corner method");
         System.out.println("Total distribution cost: " + calculateTotalCost(northWestCornerSolution, cost));
         printSolution(northWestCornerSolution);
 
@@ -158,6 +160,29 @@ public class TransportationProblem {
         }
 
         for (int i = 0; i < solution[0].length; i++) {
+            System.out.print("-----");
+        }
+        System.out.println("---------");
+
+        for (int j = 0; j < demand.length; j++) {
+            System.out.printf("%5d ", demand[j]);
+        }
+        System.out.println("\n");
+    }
+
+    /**
+     * Prints the initial transportation problem matrix.
+     */
+    private void printInitialTable() {
+        System.out.println("Transportation problem:");
+        for (int i = 0; i < cost.length; i++) {
+            for (int j = 0; j < cost[i].length; j++) {
+                System.out.printf("%5d ", cost[i][j]);
+            }
+            System.out.printf("| %5d\n", supply[i]);
+        }
+
+        for (int i = 0; i < cost[0].length; i++) {
             System.out.print("-----");
         }
         System.out.println("---------");
